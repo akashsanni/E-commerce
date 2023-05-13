@@ -1,0 +1,21 @@
+
+.Navbar__wrapper{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Navbar__logo{
+    width: 7rem;
+    height: 4rem;
+}
+
+.form_wrapper{
+    display: flex;
+}
+
+.font{
+    font-size: 2rem;
+
+}
