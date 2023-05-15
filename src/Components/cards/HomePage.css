@@ -9,6 +9,7 @@
 
 }
 
+
 .card__image>img{
     border-radius: 12px;
     cursor: pointer;
@@ -54,3 +55,23 @@
     background-color: #fcc50b;
     margin-top: -18px;
 }
+.dropdowncard__main{
+    position: absolute;
+    bottom:90;
+    left:90;
+    top:90;
+    padding: 10px;
+    border: 1px solid red;
+    width: 80%;
+    display: grid;
+    grid-gap:12px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+
+}
+.dropdowncard{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+

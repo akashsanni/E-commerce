@@ -1,14 +1,16 @@
 import { FaShoppingBag } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
 import { FaUserAlt } from 'react-icons/fa';
+import NavbarDropDown from './NavbarDropDown';
+import { Tooltip as ReactTooltip } from "react-tooltip";
 import "./Navbar.css"
 function Navbar() {
   return (
     <>
         <div className='Navbar__wrapper'>
             <img className="Navbar__logo" src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo_small.svg?v=1682421543"  alt="image"/>
- 
-            <div>Categories</div>
+           
+            <div id = "app-title">Categories</div>
             <div>Daily Deals</div>
             <div>Gift With boAt</div>
             <div>More</div>
@@ -22,10 +24,13 @@ function Navbar() {
 
             <div><FaShoppingBag/></div>
             
-          
-            
 
         </div>
+        <ReactTooltip 
+          anchorId="app-title"
+          place="bottom"
+          content={<NavbarDropDown/>}
+    />
 
     </>
   )

@@ -12,9 +12,11 @@ const props = {
   return (
    <>
     <div className="card">
+
         <div className="card__image">
            <img src={props.image}  height={380} alt="" />
         </div>
+
         <div className="title">
           <h2>{props.mainfeature}</h2>
         </div>

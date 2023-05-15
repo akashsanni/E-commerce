@@ -30,10 +30,12 @@ const productSchema = new mongoose.Schema({
         type: String ,
     },
    ],
-    category: {
-        type: String, 
-        required: [true, 'A product Must Have A Category ']
-    }
+    category: 
+        {
+            categoryName:{type:String},
+            categoryImage:{type:String}
+        },
+    
 
     });
 
