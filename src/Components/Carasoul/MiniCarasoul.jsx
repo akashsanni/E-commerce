@@ -2,7 +2,7 @@ import Carousel from "react-multi-carousel";
 import "./carasoul.css"
 import { Image } from "semantic-ui-react";
 import 'react-multi-carousel/lib/styles.css';
-import Homepage from "../cards/homepage";
+import Homepage from "../cards/Homepagecard";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },

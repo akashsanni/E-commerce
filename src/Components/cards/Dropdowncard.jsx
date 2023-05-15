@@ -8,7 +8,7 @@ function Dropdowncard({tempobj}) {
         
              {tempobj.map((el)=>(
                 <div key={el.key} className="dropdowncard">
-                <img src= {el.image} alt="" width={50} />
+                <img src= {el.url} alt="" width={50} />
                 <h4>{el.name}</h4>
                 </div>
              ))}

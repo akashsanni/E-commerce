@@ -91,7 +91,7 @@ exports.postproduct = async (req, res) => {
   exports.getAllCategories = async( req, res ) => {
     try{
       const categories = await Product.distinct('category')
-      console.log(categories);
+
       res.status(200).json({
         status: 'success',
         data: {
@@ -108,10 +108,11 @@ exports.postproduct = async (req, res) => {
   }
 
   exports.getByCategories = async( req, res ) => {
+    console.log(req.params.id);
     try{
       const categories = await Product.find(
         {
-          category:`${req.params.id}`
+          'category.name':`${req.params.id}`
         }
         )
       console.log(categories);
