@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <>
         <div className='Navbar__wrapper'>
-            <img className="Navbar__logo" src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo_small.svg?v=1682421543" alt="image"/>
+            <img className="Navbar__logo" src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo_small.svg?v=1682421543"  alt="image"/>
  
             <div>Categories</div>
             <div>Daily Deals</div>
