@@ -1,7 +1,14 @@
-#root {
 
-}
 
 .boat{
   color: var(--orange);
+}
+.carousel .thumbs-wrapper {
+  display: none;
+}
+.carousel .carousel-status {
+  display: none;
+}
+li.react-multi-carousel-item.image-item{
+  padding: 0.6%;
 }

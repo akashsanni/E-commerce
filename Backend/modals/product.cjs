@@ -32,8 +32,8 @@ const productSchema = new mongoose.Schema({
    ],
     category: 
         {
-            categoryName:{type:String},
-            categoryImage:{type:String}
+            name:{type:String},
+            url:{type:String}
         },
     
 

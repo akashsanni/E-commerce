@@ -61,6 +61,30 @@ exports.postproduct = async (req, res) => {
       }
   }
 
+  exports.updateproduct = async( req, res ) => {
+    console.log(req.params.id);
+    try{
+      
+      const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+      });
+  
+      res.status(200).json({
+        status: 'success',
+        data: {
+          product
+        }
+      });
+    }
+    catch(err){
+      res.status(400).json({
+        status: 'fail',
+        message: err
+        })
+      }
+  }
+
 
   // some agregation function 
 

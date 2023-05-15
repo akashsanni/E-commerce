@@ -8,6 +8,7 @@ router
 .get(productController.getproducts)
 .post(productController.postproduct)
 
+
 router
 .route('/categories')
 .get(productController.getAllCategories)
@@ -21,6 +22,7 @@ module.exports = router
 router
 .route('/:id')
 .get(productController.getproduct)
+.patch(productController.updateproduct)
 
 
 
