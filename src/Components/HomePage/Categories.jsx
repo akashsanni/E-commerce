@@ -18,7 +18,6 @@ function Categories(props) {
           console.error("Error fetching categories:", error);
         });
     }, []);
-    console.log(categories);
     return (
       <div className="navbar__dropdown">
         <Smallcard  tempobj={categories}></Smallcard>

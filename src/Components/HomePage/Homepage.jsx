@@ -9,7 +9,7 @@ import Usp from './Usp'
 function Homepage() {
   return (
     <>
-        <Navbar></Navbar>
+    
         <MainCaraSoul></MainCaraSoul>
         <Categories></Categories>
         <Timer></Timer>

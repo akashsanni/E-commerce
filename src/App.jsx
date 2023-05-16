@@ -1,14 +1,21 @@
 import './App.css'
 import React from 'react';
+import Checker from './Components/Navbar/Checker';
 import Homepage from './Components/HomePage/Homepage';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
+import { Routes , Route} from 'react-router-dom';
+import Navbar from './Components/Navbar/Navbar';
 
 function App() {
 
   return (
     <>
-    <Homepage />
+    <Navbar></Navbar>
+    <Routes>
+      <Route path='/' element={<Homepage/>}></Route>
+      <Route path={`/category/:id`}  element={<Checker></Checker>}></Route>
+    </Routes>
+    
     </>
 
   )
