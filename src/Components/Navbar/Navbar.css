@@ -1,5 +1,7 @@
-
 .Navbar__wrapper{
+    width: 84%;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid black;
     display: flex;
     justify-content: space-around;
@@ -18,4 +20,15 @@
 .font{
     font-size: 2rem;
 
+}
+.navOption{
+    min-width: fit-content;
+    font-size: 1.2rem;
+    list-style: none;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+.navOption > li {
+    min-width: fit-content;
 }

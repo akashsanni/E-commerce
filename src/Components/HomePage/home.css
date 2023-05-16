@@ -1,0 +1,36 @@
+.timer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    width: 84%;
+    height: 15vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-repeat: no-repeat;
+    background-image: url("https://cdn.shopify.com/s/files/1/0057/8938/4802/files/timer-background_1600x.png?v=1683785048");
+}
+.usp__main{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* border:1px solid red; */
+    padding: 10px;
+    margin-bottom: 12px;
+}
+.usp{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+
+}
+.usp > img{
+    width: 120px;
+}
