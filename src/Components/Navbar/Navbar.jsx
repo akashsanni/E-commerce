@@ -1,6 +1,7 @@
 import { FaShoppingBag } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
 import { FaUserAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 import "./Navbar.css"
@@ -19,8 +20,10 @@ function Navbar() {
               <input type="search" id="search-box"/>
               <label htmlFor="search-box" className='search-box'><FaSearch/></label>
             </form>
-          
-            <div><FaUserAlt/></div>
+          <Link to = '/authentication'>
+          <div><FaUserAlt/></div> 
+          </Link>
+           
 
             <div><FaShoppingBag/></div>
             <h1>1</h1>
