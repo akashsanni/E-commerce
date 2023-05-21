@@ -9,6 +9,8 @@
 .carousel .carousel-status {
   display: none;
 }
-li.react-multi-carousel-item.image-item{
-  padding: 0.6%;
+
+
+.react-multi-carousel-track > li{
+  min-width: 24em;
 }
