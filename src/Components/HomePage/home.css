@@ -1,14 +1,38 @@
 .timer{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    color: white;
+    justify-content: center;
+    background-image: url("https://cdn.shopify.com/s/files/1/0057/8938/4802/files/timer-background_1600x.png?v=1683785048");
+    background-size:cover ;/* or background-size: contain; */
+    background-repeat: no-repeat;
+    background-position: center center;
     width: 84%;
-    height: 15vh;
+    height: 150px;
+    padding: 10px;
     margin-left: auto;
     margin-right: auto;
-    background-repeat: no-repeat;
-    background-image: url("https://cdn.shopify.com/s/files/1/0057/8938/4802/files/timer-background_1600x.png?v=1683785048");
+    color: white;
+
+}
+.timer > h1{
+    font-size: 2rem;
+}
+.time{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.minutes{
+    padding: 13px;
+    padding-top: 5px;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hours{
+    font-size: 2rem;
 }
 .usp__main{
     width: 60%;

@@ -14,12 +14,23 @@ setInterval((Hours, Minutes,Seconds) => {
 
   return (
     <div className="timer">
-        <br />
-        <br />
-        <br />
-        <h1>The Summer Sale 60% off is here </h1>
-        <h3>Ending In </h3>
-        <h1>{` 0${Hours} Hours:   0${Minutes} Minutes: ${Seconds} Second`}</h1>
+        <h1 >Don't miss out on the Summer Sale! Ending In  </h1>
+        <div className="time">
+          <div className="minutes">
+          <p className='hours'>{`${Hours>9?Hours:'0'+Hours}`} </p>
+          <p>Hours</p>
+          </div>
+          <div className="minutes">
+          <p className='hours'>{`${Minutes>9?Minutes:'0'+Minutes}`} </p>
+          <p>Minutes</p>
+          </div>
+          <div className="minutes">
+          <p className='hours'>{`${Seconds>9?Seconds:'0'+Seconds}`} </p>
+          <p>Seconds</p>
+          </div>
+         
+        </div>
+       
     </div>
   )
 }

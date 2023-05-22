@@ -1,7 +1,17 @@
 const User = require('../modals/userModel.cjs')
 const catchAsync = require('../utils/catchAsync.cjs')
+const AppError = require('../utils/appError.cjs')
 
-
+const filterObj = (obj , ...allowedFields) =>{
+  const newObj = {};
+  Object.keys(obj).forEach(el=> {
+    if(allowedFields.includes(el)){
+      newObj[el] = obj[el];
+    }
+    
+  })
+  return newObj;
+}
 exports.getAllusers = catchAsync(async (req, res,next) => {
 
   const users = await User.find();
@@ -13,3 +23,23 @@ exports.getAllusers = catchAsync(async (req, res,next) => {
     }
   });
 });
+
+exports.updateMe = catchAsync(async(req,res,next) =>{
+  // craete error if user posts paword data 
+  if(req.body.password || req.body.passwordConfirm){
+    return next (new AppError("This route is nor for changing The PassWord, please use Update Password",400))
+  }
+
+  // 2 .  UPADATE USER DOCUMENT 
+  const filterdBody = filterObj( req.body ,'username' , 'email')
+  console.log(filterdBody);
+  const UpdateUser = await User.findByIdAndUpdate(req.user.id , filterdBody , {
+    new:true,
+    runValidators:true
+  })
+  res.status(200).json({
+    status:200,
+    user: UpdateUser
+
+  })
+})
