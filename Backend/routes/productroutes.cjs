@@ -1,5 +1,6 @@
 const express = require('express');
 const productController = require('../controllers/productcontroller.cjs');
+const authController = require('../controllers/authController.cjs')
 const router = express.Router();
 
 
@@ -23,6 +24,7 @@ router
 .route('/:id')
 .get(productController.getproduct)
 .patch(productController.updateproduct)
+.delete(authController.module.protect , authController.module.restrictTo('admin' , 'lead-guide') ,productController.deleteTour)
 
 
 
