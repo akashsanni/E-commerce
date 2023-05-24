@@ -17,7 +17,7 @@ function App() {
       <Route path='/' element={<Homepage/>}></Route>
       <Route path={`/category/:id`}  element={<Checker></Checker>}></Route>
       <Route path={'/authentication'} element ={< Authentication/>}/>
-      <Route path={'/desc'} element ={< ProductsPage/>}/>
+      <Route path={'/description/:id'} element ={< ProductsPage/>}/>
     </Routes> 
     
     

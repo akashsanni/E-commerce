@@ -30,7 +30,7 @@ function Checker() {
     ) : (
       dataTemp.length > 0 ? (
         <>
-          <h1>{dataTemp[0].category.name}</h1>
+          <h1 className='categorywise__main__heading'>{dataTemp[0].category.name}</h1>
           <div className="categorywise__main">
           {dataTemp.map((el) => (
             <Categorywise
@@ -40,6 +40,7 @@ function Checker() {
               price={el.price}
               discountPrice={el.discountPercent}
               rating={el.rating}
+              _id={el._id}
             />
           ))}
 

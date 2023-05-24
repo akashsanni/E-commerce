@@ -1,11 +1,13 @@
 import React from 'react'
 import "./Categorywise.css"
+import { Link } from 'react-router-dom'
 // eslint-disable-next-line react/prop-types
-function Categorywise({image , name , price , discountPrice ,rating }) {
+function Categorywise({image , name , price , discountPrice ,rating ,_id }) {
   return (
+    <Link to={`/decription/${_id}`} style={{paddingLeft: 13, textDecoration: 'none'}}>
     <div className="categorywise">
         <div className="categorywise__image">
-            <img src={image} width = {140}alt="" />
+            <img src={image} width = {150}alt="" />
         </div>
         <div className="details">
             <h3>{name}</h3>
@@ -21,6 +23,9 @@ function Categorywise({image , name , price , discountPrice ,rating }) {
             <button className="addtocart">Add To Cart</button>
         </div>
     </div>
+    
+    </Link>
+   
   )
 }
 
