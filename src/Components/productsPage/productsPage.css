@@ -14,26 +14,47 @@
     margin-left: 10px;
     border-radius: 50%;
 }
+
+/* PRICE CARD CSS HERE */
 .priceCard{
     padding: 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     border-radius: 10px;
-    width: 400px;
-    height: 190px;
-    border: 1px solid black;
+    width: 27em;
+    height: 200px;
+    border: 1px solid #bfbfbf;
 }
-.priceCard__price,.priceCard__quantityBox{
+.priceCard__price{
+    display: flex;
+    padding: 2px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4em;
+}
+.realprice,.sellingprice,.discountpercentage{
+    font-size: 2rem;
+    font-weight: 1000;
+}
+.discountpercentage{
+    color: green;
+}
+.realprice{
+    text-decoration: line-through;
+}
+
+.priceCard__quantity{
+    margin-top: 0.5em;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
-}
-.priceCard__quantity{
-display: flex;
-justify-content: space-between;
-pa
+
 }
 .priceCard__quantityBox{
+    display: flex;
+    justify-content: space-around;
+    border-radius: 4px;
     width: 60px;
     border: 1px solid black;
 }
@@ -44,7 +65,8 @@ pa
 .priceCard>button{
     padding: 1em;
     border: none;
-    width: 90%;
+    width: 100%;
+    margin-top: 0.8em;
     background-color: red;
     color: white;
     font-size: 1rem;
@@ -53,11 +75,58 @@ pa
     margin-right: auto;
     border-radius: 7px;
 }
+.quantity{
+    font-weight: 1000;
+}
+.deliveryCard{
+   
+    width: 30em;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    
+}
+.deliverycardinput{
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+}
+.deliverycardinput > input{
+    border-radius: 4px;
+}
 
+.ProductsPagecards{
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+}
 
 
 @media(max-width:1400px){
     .productsPage{
         flex-direction: column;
     }
+    .productsPageleft{
+        background: grey;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .ProductsPagecards{
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    
+    }
+    .ProductsPagecards>*{
+        margin-bottom: 40px;
+    }
+    
 }

@@ -42,7 +42,24 @@ const userSchema = new mongoose.Schema({
             },
             message: "Passwords do not match"
         }
-    }, 
+    },
+    carts:[
+        {
+            product:{
+                type:mongoose.Schema.ObjectId, 
+                ref:"Product",
+                unique:true, 
+            },
+            count:{
+                type:Number,
+                default:1
+            }
+
+        }
+       
+        
+    ],  
+     
     paswordChanged : Date,
     passwordResetToken:String,
     passwordResetExpires: Date ,
