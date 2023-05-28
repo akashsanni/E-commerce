@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import PriceCard from './PriceCard'
+import DeliveryCard from './DeliveryCard'
+import { useParams } from 'react-router-dom'
 const ProductsPage = () => {
   const [obj , setObj] = useState({})
-
-useEffect(()=>{
-    fetch('http://localhost:1200/api/v1/products/645f1c6e40d3c6926081573e')
+  let {id} = useParams()
+  console.log(id);
+  useEffect(()=>{
+    fetch(`http://localhost:1200/api/v1/products/${id}`)
     .then((res)=>res.json())
     .then((data)=>setObj(data.data))
 },[])
@@ -12,11 +15,11 @@ useEffect(()=>{
   return (
     <div className="productsPage">
      <div className="productsPageleft">
-        <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/products/32011675-2ad8-4b99-9787-895caf201d28_600x.png?v=1642405569" alt="" />
+        <img src={obj?.product?.images[0]} width ={500}alt="" />
     </div>
     <div className="productsPageright">
-        <h1><b>ProductsName</b> | Wireless Earbuds with upto 60 Hours Playback, 13mm Drivers, IWP Technology, 650mAh Charging Case</h1>
-        <div>⭐4.8 | 1297 reviews</div>
+        <h1><b>{obj?.product?.name}</b> | {obj?.product?.description}</h1>
+        <div>⭐{obj?.product?.rating} | {obj?.product?.reviews} reviews</div>
         <br /><br /><br />
         <hr />
 
@@ -29,7 +32,11 @@ useEffect(()=>{
                 <div className="color-box" style={{ background: '#ff0000' }}></div>
             </div>
         </div>
-        <PriceCard />
+        <div className="ProductsPagecards">
+        <DeliveryCard />
+        <PriceCard price={obj?.product?.price}  discountPercentage={obj?.product?.discountPercent}/>
+        </div>
+
     </div>
 
     </div>

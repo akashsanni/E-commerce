@@ -20,11 +20,12 @@ router
 .get(productController.getByCategories)
 module.exports = router
 
+
 router
 .route('/:id')
 .get(productController.getproduct)
 .patch(productController.updateproduct)
-.delete(authController.module.protect , authController.module.restrictTo('admin' , 'lead-guide') ,productController.deleteTour)
+.delete(authController.protect , authController.restrictTo('admin' , 'lead-guide') ,productController.deleteTour)
 
 
 

@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <>
         <div className='Navbar__wrapper'>
-            <img className="Navbar__logo" src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo_small.svg?v=1682421543"  alt="image"/>
+            <Link to ="/"><img className="Navbar__logo" src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/boAt_logo_small.svg?v=1682421543"  alt="image"/></Link> 
             <ul className="navOption">
               <li>Categories</li>
               <li>Daily Deals</li>
@@ -24,7 +24,10 @@ function Navbar() {
                 <Link to = '/authentication'>
                 <div><FaUserAlt/></div> 
                 </Link>
-                <img src="https://cdn-icons-png.flaticon.com/128/2211/2211008.png" width ={30} alt="" />
+                <Link to ='/cart'>
+                  <img src="https://cdn-icons-png.flaticon.com/128/2211/2211008.png" width ={30} alt="" />
+                </Link>
+               
             </div>
           
         </div>

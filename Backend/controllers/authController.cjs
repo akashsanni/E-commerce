@@ -10,7 +10,7 @@ const signToken = id =>{
         expiresIn: '1d'
     })
 }
-const signup = catchAsync(async(req,res,next) => {
+ exports.signup = catchAsync(async(req,res,next) => {
     // problem is that everyone can use to login and signup using admin 
     // const newUser = await User.create(req.body);
     const newUser = await(User.create({
@@ -32,7 +32,7 @@ const signup = catchAsync(async(req,res,next) => {
         
 })
 
- const login = catchAsync(async(req, res, next) => {
+exports.login = catchAsync(async(req, res, next) => {
     const { email, password } = req.body;
 
     // check if email and password esidet 
@@ -43,7 +43,7 @@ const signup = catchAsync(async(req,res,next) => {
     //check if user exists && password is correct 
 
     const user = await User.findOne({email}).select('+password')
-    const correct = await user.correctPassword(password,user.password)
+    const correct = await user?.correctPassword(password,user.password)
     if(!user || !correct){
         return next(new AppError('Invalid email or password', 401));
     }
@@ -57,7 +57,7 @@ const signup = catchAsync(async(req,res,next) => {
     })
 })
 
-const protect = catchAsync(async(req,res,next) => {
+exports.protect = catchAsync(async(req,res,next) => {
     // getting token an and check of its there 
      let token ; 
      if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
@@ -87,7 +87,7 @@ const protect = catchAsync(async(req,res,next) => {
     next()
 
 })
-const restrictTo = (...args) => { 
+exports.restrictTo = (...args) => { 
     return(req,res,next)=>{
         if(!args.includes(req.user.role)){
             return next(new AppError('You are not authorized to perform this action ', 403))
@@ -96,7 +96,7 @@ const restrictTo = (...args) => {
     }
   
 }
-const  forgotPassword = catchAsync( async (req , res , next ) => {
+exports.forgotPassword = catchAsync( async (req , res , next ) => {
     // 1. Get user based on posted emnail 
     
     const user = await User.findOne({email : req.body.email})
@@ -114,14 +114,6 @@ const  forgotPassword = catchAsync( async (req , res , next ) => {
 
 
 })
-const resetPassword = (req , res , next ) => {
-
-}
-exports.module = {
-    signup,
-    login,
-    protect,
-    restrictTo,
-    forgotPassword,
-    resetPassword
+exports.resetPassword = (req , res , next ) => {
+    
 }

@@ -3,14 +3,28 @@ const express = require('express');
 const Router = express.Router();
 const authController = require('../controllers/authController.cjs')
 const userController = require('../controllers/useController.cjs');
+const cartController = require('../controllers/cartController.cjs')
 
-Router.get('/' ,  authController.module.protect, userController.getAllusers );
+// Router.get('/' ,  
+// authController.protect, 
+// userController.getAllusers );
 
-Router.patch('/updateme' , authController.module.protect , userController.updateMe)
+Router.
+route("/").
+get( authController.protect ,  userController.getUser)
 
-Router.post('/signup', authController.module.signup)
-Router.post('/login', authController.module.login)
-Router.post('/reset', authController.module.resetPassword)
-Router.post('/forgotpassword', authController.module.forgotPassword)
+Router
+.route('/addToCart/:productId')
+.post( authController.protect, cartController.addToCart );
+
+
+
+
+Router.patch('/updateme' , authController.protect , userController.updateMe)
+
+Router.post('/signup', authController.signup)
+Router.post('/login', authController.login)
+Router.post('/reset', authController.resetPassword)
+Router.post('/forgotpassword', authController.forgotPassword)
 
 module.exports = Router;
