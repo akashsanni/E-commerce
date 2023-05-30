@@ -1,7 +1,9 @@
 import "./productsPage.css"
 import React from 'react'
-
-function PriceCard({price ,discountPercentage}) {
+import {addAsync} from "./../././../../Frontend/redux/features/cartSlice"
+import { useDispatch } from "react-redux"
+function PriceCard({price ,discountPercentage,id}) {
+  const dispatch = useDispatch()
   return (
    <div className="priceCard">
     <div className="priceCard__price">
@@ -19,7 +21,7 @@ function PriceCard({price ,discountPercentage}) {
        
         <p className="quantity">Quantity</p>
     </div>
-    <button>Add to Cart </button>
+    <button  onClick={() => dispatch(addAsync(id))}>Add to Cart </button>
    </div>
 
   )

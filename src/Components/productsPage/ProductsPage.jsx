@@ -5,13 +5,11 @@ import { useParams } from 'react-router-dom'
 const ProductsPage = () => {
   const [obj , setObj] = useState({})
   let {id} = useParams()
-  console.log(id);
   useEffect(()=>{
     fetch(`http://localhost:1200/api/v1/products/${id}`)
     .then((res)=>res.json())
     .then((data)=>setObj(data.data))
 },[])
- console.log(obj.product);
   return (
     <div className="productsPage">
      <div className="productsPageleft">
@@ -34,7 +32,7 @@ const ProductsPage = () => {
         </div>
         <div className="ProductsPagecards">
         <DeliveryCard />
-        <PriceCard price={obj?.product?.price}  discountPercentage={obj?.product?.discountPercent}/>
+        <PriceCard price={obj?.product?.price} id={id} discountPercentage={obj?.product?.discountPercent}/>
         </div>
 
     </div>

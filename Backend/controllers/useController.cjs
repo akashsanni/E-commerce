@@ -43,28 +43,12 @@ exports.updateMe = catchAsync(async(req,res,next) =>{
 
   })
 })
-// kind of url /products/productid/users/783872
-// just for reference 
-// 
-// {
-//   "username":"CHANDO",
-//   "email":"CHANDO@GMAIL.COM",
-//   "password":"12345678",
-//   "passwordConfirm":"12345678"
-// }
-// "_id": "6471b1d84f0931cf1cc34a37",
-//645f1cf940d3c69260815740    boat airpoad1
-// exports.deleteFromCart = async(req, res , next) =>{
-
-// }
-
 
 
 exports.getUser= async(req, res , next) =>{
-  console.log(req.user);
   const user = await req.user.populate({
     path:'carts.product',
-    select:'name images price '
+    select:'name price description images '
   });
   if(!user){
     return next(new AppError('user is not found',404))

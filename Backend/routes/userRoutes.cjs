@@ -13,10 +13,10 @@ Router.
 route("/").
 get( authController.protect ,  userController.getUser)
 
-Router
-.route('/addToCart/:productId')
-.post( authController.protect, cartController.addToCart );
-
+// Router
+// .route('/addToCart/:productId')
+// .post( authController.protect, cartController.addToCart )
+// .patch(authController.protect, cartController.updateToCart )
 
 
 
