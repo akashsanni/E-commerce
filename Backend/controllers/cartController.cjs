@@ -98,7 +98,10 @@ exports.getCart = async(req, res, next) =>{
         console.log(req.user)
         const userId = req.user._id;
         console.log(userId)
-        const cart = await Cart.findOne({user:userId}).populate("items.product");
+        const cart = await Cart.findOne({user:userId}).populate({
+            path:"items.product",
+            select:"name  "
+        })
 
         res.status(200).json({
             status:'success',
