@@ -6,15 +6,15 @@ const router = express.Router();
 
 router
 .route('/')
-.get(cartController.getAllcart)
-.post( authcontroller.protect ,  cartController.addCart)
-.delete(cartController.removeFromCart)
-.patch( authcontroller.protect ,  cartController.updateCart)
+.get( authcontroller.protect , cartController.getCart)
+
+
 
 router
-.route('/:id')
-.get(cartController.getCart)
-
+.route('/:productId')
+.post( authcontroller.protect ,cartController.addCart)
+.patch( authcontroller.protect ,  cartController.updateCart)
+.delete( authcontroller.protect , cartController.removeFromCart)
 module.exports = router
 
 

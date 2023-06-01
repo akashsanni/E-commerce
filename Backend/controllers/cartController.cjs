@@ -6,8 +6,8 @@ const User = require('./../modals/userModel.cjs')
 exports.addCart = async(req,res , next) =>{
 
     try{
-        const userId = req.user.id
-        const productId = req.body.product
+        const userId = req.user._id
+        const productId = req.params.productId
         let cart =  await Cart.findOne({ user: userId });
 
         if(cart){
@@ -39,8 +39,8 @@ exports.addCart = async(req,res , next) =>{
 
 exports.removeFromCart = async(req, res, next) =>{
     try{
-        const userId = req.body.user
-        const productId = req.body.product
+        const userId = req.user._id
+        const productId = req.params.productId
         const cart = await Cart.findOne({ user: userId })
         const item = cart.items.find((el) => el.product.toString() === productId);
         if (item) {
@@ -61,17 +61,17 @@ exports.removeFromCart = async(req, res, next) =>{
 
 exports.updateCart = async(req,res ,next) =>{
     try{
-        const userId = req.user.id
-        const productId = req.body.product
+        const userId = req.user._id
+        const productId = req.params.productId
         const count = req.body.count
         let cart =  await Cart.findOne({ user: userId });
 
         if(cart){
             const item = cart.items.find((el) => el.product.toString() === productId);
             if (item) {
-                item.quantity += 1;
+                item.quantity = count;
               } else {
-                cart.items.push({ product: productId, quantity: 1 });
+                cart.items.push({ product: productId, quantity: count });
               }
               await cart.save();
         } else{
@@ -93,16 +93,17 @@ exports.updateCart = async(req,res ,next) =>{
 
 }
 exports.getCart = async(req, res, next) =>{
+
     try{
-        const userId = req.params.id;
+        console.log(req.user)
+        const userId = req.user._id;
         console.log(userId)
-        const cart = await Cart.findOne({user:userId});
+        const cart = await Cart.findOne({user:userId}).populate("items.product");
 
         res.status(200).json({
             status:'success',
-            data:{
                 cart:cart
-            }
+            
         })
 
 
