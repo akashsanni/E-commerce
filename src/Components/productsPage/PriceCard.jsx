@@ -1,6 +1,6 @@
 import "./productsPage.css"
 import React from 'react'
-import {addAsync} from "./../././../../Frontend/redux/features/cartSlice"
+import {addAsync} from "./../../redux/features/cartSlice"
 import { useDispatch } from "react-redux"
 function PriceCard({price ,discountPercentage,id}) {
   const dispatch = useDispatch()

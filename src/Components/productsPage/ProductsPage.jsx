@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 import PriceCard from './PriceCard'
 import DeliveryCard from './DeliveryCard'
-import { useParams } from 'react-router-dom'
+import Review from './Review'
 const ProductsPage = () => {
   const [obj , setObj] = useState({})
   let {id} = useParams()
@@ -34,6 +36,7 @@ const ProductsPage = () => {
         <DeliveryCard />
         <PriceCard price={obj?.product?.price} id={id} discountPercentage={obj?.product?.discountPercent}/>
         </div>
+        <Review />
 
     </div>
 

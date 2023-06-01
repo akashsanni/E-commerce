@@ -1,101 +1,120 @@
-const User = require('../modals/userModel.cjs')
+
 const catchAsync = require('../utils/catchAsync.cjs')
 const AppError = require('../utils/appError.cjs')
+const Cart = require('./../modals/cartModel.cjs')
+const User = require('./../modals/userModel.cjs')
+exports.addCart = async(req,res , next) =>{
 
+    try{
+        const userId = req.user.id
+        const productId = req.body.product
+        let cart =  await Cart.findOne({ user: userId });
 
+        if(cart){
+            const item = cart.items.find((el) => el.product.toString() === productId);
+            if (item) {
+                item.quantity += 1;
+              } else {
+                cart.items.push({ product: productId, quantity: 1 });
+              }
+              await cart.save();
+        } else{
+            cart = await Cart.create({
+                user: userId,
+                items: [{ product: productId, quantity: 1 }],
+              });
+        }
 
-// exports.addToCart = catchAsync(async(req,res,next) => {
+        res.status(201).json({
+            status: "success",
+            data: cart,
+          });
+       
 
+    }catch(error){
+       console.log(error);
+    }
 
-//       // 1 find the User 
-//       console.log(req.user);
-//       const user = await User.findById(req.user._id)
-//       // const existingCart =  user.carts.find((cart) => cart.product.equals());
-//       const existingCart = user.carts.find((cart) => cart.product.equals(req.params.productId));
-//       if (existingCart) {
-//         existingCart.count += 1;
-//       }
-//       else{
-//         user.carts.push({
-//           product: req.params.productId,
-//           count: 1,
-//         })
-//       }
-
-//       // 2 SAVE USER
-//       await user.save({validateBeforeSave:false});
-//       res.status(200).json({
-//         status:"success",
-        
-//       })
-      
-//   })
-
-
-exports.getCart = catchAsync(async(req, res , next) =>{
-  const cart = await req.user.populate('carts.product')
-  console.log(cart)
-
-
-})
-
-
-// add to cart is working 
-exports.addToCart = catchAsync(async(req,res,next)=>{
-  const user = req.user; 
-  const existingCart = user.carts.find((cart) => cart.product.equals(req.params.productId));
-if (existingCart) {
-  existingCart.count += 1;
-}else{
-  user.carts.push({
-    product: req.params.productId,
-    count: 1,
-  })
 }
- 
-  await user.save({validateBeforeSave:false});
+
+exports.removeFromCart = async(req, res, next) =>{
+    try{
+        const userId = req.body.user
+        const productId = req.body.product
+        const cart = await Cart.findOne({ user: userId })
+        const item = cart.items.find((el) => el.product.toString() === productId);
+        if (item) {
+            const index = cart.items.indexOf(item);
+            cart.items.splice(index, 1);
+            cart.save();
+        }
+        res.status(204).json({
+            status: "success",
+            data: cart,
+        })
+
+    }catch(error){
+        console.log(error)
+    }
+}
 
 
-  res.status(201).json({
-    status:"success",
-    cart
-  })
+exports.updateCart = async(req,res ,next) =>{
+    try{
+        const userId = req.user.id
+        const productId = req.body.product
+        const count = req.body.count
+        let cart =  await Cart.findOne({ user: userId });
 
-})
+        if(cart){
+            const item = cart.items.find((el) => el.product.toString() === productId);
+            if (item) {
+                item.quantity += 1;
+              } else {
+                cart.items.push({ product: productId, quantity: 1 });
+              }
+              await cart.save();
+        } else{
+            cart = await Cart.create({
+                user: userId,
+                items: [{ product: productId, quantity: count }],
+              });
+        }
 
-// updating my cart 
+        res.status(201).json({
+            status: "success",
+            data: cart,
+          });
+       
 
-exports.updateCart = catchAsync(async(req,res,next)=>{
-  const user = req.user; 
-  const count = req.body.count
+    }catch(error){
+       console.log(error);
+    }
 
-  const existingCart = user.carts.find((cart) => cart.product.equals(req.params.productId))
-  existingCart.count = count;
-  await user.save({validateBeforeSave:false});
-  res.status(201).json({
-    status:"success",
+}
+exports.getCart = async(req, res, next) =>{
+    try{
+        const userId = req.params.id;
+        console.log(userId)
+        const cart = await Cart.findOne({user:userId});
 
-  })
+        res.status(200).json({
+            status:'success',
+            data:{
+                cart:cart
+            }
+        })
 
-})
 
-// Deleting from my cart 
+    }catch(error){
+        console.log(error)
+    }
+}
 
-exports.deleteCart = catchAsync(async(req,res,next)=>{
-  const user = req.user; 
-
-  const newCart = user.carts.filter((cart) => !cart.product.equals(req.params.productId))
-
-  user.carts = newCart
-  await user.save({validateBeforeSave:false});
-  
-  res.status(201).json({
-    status:"success",
-    data: newCart
-  })
-
-})
-  
-  
-
-  
+exports.getAllcart = async(req, res,next) =>{
+    const carts = await Cart.find()
+    res.status(200).json({
+        status:"success"
+        ,data:carts
+    })
+}

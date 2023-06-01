@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "./CartPage.css"
 import { useDispatch } from 'react-redux'
-import {updateAsync} from "./../../../Frontend/redux/features/cartSlice"
+import {updateAsync} from "./../../redux/features/cartSlice"
 function CartProductCard({ name , count , price , pic , itemId }) {
      const dispatch = useDispatch()
      const [quantity , setQuantity]= useState(count)

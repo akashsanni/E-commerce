@@ -8,15 +8,16 @@ const cartController = require('../controllers/cartController.cjs')
 // Router.get('/' ,  
 // authController.protect, 
 // userController.getAllusers );
-
+console.log(userController.getUser);
+console.log(authController.protect);
 Router.
 route("/").
-get( authController.protect ,  userController.getUser)
+get( authController.protect )
 
 // Router
 // .route('/addToCart/:productId')
-// .post( authController.protect, cartController.addToCart )
-// .patch(authController.protect, cartController.updateToCart )
+// .post( authController.protect, cartController.addToCart );
+
 
 
 

@@ -4,8 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Routes , Route} from 'react-router-dom';
 import React ,{useContext, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
-
-import { fetchAsync } from '../Frontend/redux/features/cartSlice';
+import { fetchAsync } from './redux/features/cartSlice';
 import Checker from './Components/Navbar/Checker';
 import Homepage from './Components/HomePage/Homepage';
 import CartPage from './Components/cartPage/CartPage';
