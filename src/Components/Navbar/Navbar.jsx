@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 import "./Navbar.css"
 function Navbar() {
-  const cartCount = useSelector((state) => state.cart.items.length)
+  const cartCount = 0
   return (
     <>
         <div className='Navbar__wrapper'>

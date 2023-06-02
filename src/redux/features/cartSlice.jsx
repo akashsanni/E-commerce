@@ -14,7 +14,7 @@ export const fetchAsync = createAsyncThunk(
     const data = await response.json()
     // console.log(data.data.user.carts);
     // The value we return becomes the `fulfilled` action payload
-    return data.data.user.carts;
+    return data.cart.items
   }
 );
 
@@ -23,8 +23,8 @@ export const addAsync = createAsyncThunk(
   async (item) => {
     const response = await addItem(item);
     const data = await response.json();
-    console.log(data);
-    return 1;
+   
+    return data.cart.items
     // The value we return becomes the `fulfilled` action payload
     // return response.data;
   }
@@ -32,11 +32,26 @@ export const addAsync = createAsyncThunk(
 
 export const updateAsync = createAsyncThunk(
   'cart/updateItems',
-  async (item , count )  => {
-    const response = await updateItem(item , count);
+  async ({item , count} )  => {
+    console.log(item)
+    console.log(count)
+    const response = await updateItem(item , 120);
     const data = await response.json();
     console.log(data);
     return 1;
+    // The value we return becomes the `fulfilled` action payload
+    // return response.data;
+  }
+);
+
+export const deleteAsync = createAsyncThunk(
+  'cart/deleteItems',
+  async (item )  => {
+    console.log(item)
+    const response = await deleteItem(item);
+    const data = await response.json();
+    return data.cart.items
+   
     // The value we return becomes the `fulfilled` action payload
     // return response.data;
   }
@@ -53,16 +68,21 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAsync.fulfilled , (state , action) =>{
+        console.log(action.payload)
         state.items = action.payload;
       })
       .addCase(addAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        console.log(action);
-        // state.items.push(action.payload);
+        state.items= (action.payload);
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        console.log(action);
+        state.items= (action.payload);
+        // state.items.push(action.payload);
+      })
+      .addCase(deleteAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.items= (action.payload);
         // state.items.push(action.payload);
       });
   },

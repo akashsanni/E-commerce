@@ -65,13 +65,15 @@ exports.updateCart = async(req,res ,next) =>{
         const productId = req.params.productId
         const count = req.body.count
         let cart =  await Cart.findOne({ user: userId });
-
+        let updatedProduct;
         if(cart){
             const item = cart.items.find((el) => el.product.toString() === productId);
             if (item) {
                 item.quantity = count;
+                updatedProduct = item;
               } else {
                 cart.items.push({ product: productId, quantity: count });
+                updatedProduct = cart.items.find((el) => el.product.toString() === productId);
               }
               await cart.save();
         } else{
@@ -79,7 +81,10 @@ exports.updateCart = async(req,res ,next) =>{
                 user: userId,
                 items: [{ product: productId, quantity: count }],
               });
+              updatedProduct = cart.items[0];
         }
+
+
 
         res.status(201).json({
             status: "success",

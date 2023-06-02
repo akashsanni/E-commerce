@@ -12,6 +12,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Authentication from './Components/authentication/authentication';
 import ProductsPage from './Components/productsPage/ProductsPage';
 import Footer from './Components/Footer/Footer';
+import Cart from './redux/features/Cart';
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -27,8 +28,9 @@ function App() {
       <Route path={'/authentication'} element ={< Authentication/>}/>
       <Route path={'/description/:id'} element ={< ProductsPage/>}/>
       <Route path={'/cart'} element ={< CartPage/>}/>
+      <Route path={'/testing'} element ={< Cart/>}/>
     </Routes> 
-    <Footer></Footer>
+
     
     
     </>
