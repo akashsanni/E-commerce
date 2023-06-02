@@ -1,8 +1,9 @@
 import Carousel from "react-multi-carousel";
 import "./carasoul.css"
 import { Image } from "semantic-ui-react";
+import { useEffect ,useState } from "react";
 import 'react-multi-carousel/lib/styles.css';
-import Homepage from "../cards/Homepagecard";
+import Homepagecard from "../cards/Homepagecard";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -36,7 +37,35 @@ const images = [
   "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
 ];
 
-function MiniCarasoul() {
+function MiniCarasoul({tag}) {
+  const [deals , setDeals] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(()=>{
+    fetch(`http://localhost:1200/api/v1/products/tag/${tag}`)
+    .then(res=>res.json())
+    .then(data=>setDeals([...deals,data]))
+    .then(setIsLoaded(true))
+  },[])
+
+const dailyDealsMapArray = deals[0]?.data?.product
+
+
+const dailyDealsMap = deals[0]?.data?.product.map((deal)=>{
+  return (
+      <Homepagecard
+          key={deal._id}
+          image={deal.images[0]}
+          mainfeature="60 Hours PlayBack"
+          name={deal.name}
+          price={deal.price}
+      />
+    
+  )
+})
+
+
+
   return (
     <Carousel className="min__carasoul"
       ssr={true}
@@ -45,14 +74,26 @@ function MiniCarasoul() {
       itemClass="image-item"
       responsive={responsive}
     >
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
-        <Homepage />
+       { isLoaded &&  dailyDealsMap} 
+       {/* <Homepagecard 
+       key={"1"}
+       label={pro.label} 
+       image={pro.image}   
+       mainfeature={pro.mainfeature}
+       name={pro.name}
+       price={pro.price}
+       avaiableColors={pro.avaiableColors}
+       
+  ></Homepagecard> */}
+
+
+     { !isLoaded &&  <Homepagecard  ></Homepagecard> }
+      {/*<Homepagecard></Homepagecard>
+      <Homepagecard></Homepagecard>
+      <Homepagecard></Homepagecard>
+      <Homepagecard></Homepagecard>
+      <Homepagecard></Homepagecard>
+      <Homepagecard></Homepagecard> */}
 
     </Carousel>
   )

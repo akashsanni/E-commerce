@@ -149,6 +149,24 @@ exports.postproduct = async (req, res) => {
         })
       }
   }
+
+  exports.getByTags = async(req, res , next) =>{
+
+    try{
+      const tag = req.params.tagId ;
+      const product = await Product.find({tag:tag})
+      res.status(200).json({
+        status:"success",
+
+        data:{
+          product
+        }
+      })
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
   
 
 

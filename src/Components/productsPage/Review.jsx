@@ -11,47 +11,20 @@ export default function Review() {
     </div>
 
     <div className="ratingsbystar">
-        <div className="five__star star">
+        {/* <div className="five__star star">
         <p>★★★★★</p>
         <p>80%</p>
         <p>(16)</p>
-        </div>
-        <div className="fourstar star">
-        <p>★★★★☆</p>
-        <p>80%</p>
-        <p>(16)</p>
-        </div>
-        
-        <div className="threestar star">
-        <p>★★★☆☆</p>
-        <p>80%</p>
-        <p>(16)</p>
-        </div>
-
-        <div className="twostar star ">
-      
-        <p>  ★★☆☆☆</p>
-        <p>80%</p>
-        <p>(16)</p>
-        </div>
-
-        <div className="onestar star">
-       
-        <p>★☆☆☆☆</p>
-        <p>80%</p>
-        <p>(16)</p>
-        </div>
-
-       
+        </div> */}
 
     </div>
     <div className="btn">
-    <button>Write a Review</button>
+    <button className='writearevuew'>Write a Review</button>
     </div>
    
     </div>
    <ReviewComments     />
-    <ReviewComments/>     
+   <ReviewComments/>     
    <ReviewComments     />
    <ReviewComments     />
    <ReviewComments     />
