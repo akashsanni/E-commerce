@@ -23,8 +23,7 @@ export const addAsync = createAsyncThunk(
   async (item) => {
     const response = await addItem(item);
     const data = await response.json();
-   
-    return data.cart.items
+    return data.data;
     // The value we return becomes the `fulfilled` action payload
     // return response.data;
   }
@@ -32,13 +31,12 @@ export const addAsync = createAsyncThunk(
 
 export const updateAsync = createAsyncThunk(
   'cart/updateItems',
-  async ({item , count} )  => {
-    console.log(item)
-    console.log(count)
-    const response = await updateItem(item , 120);
+  async ({itemId , count} )  => {
+    const response = await updateItem({itemId , count});
     const data = await response.json();
-    console.log(data);
-    return 1;
+    console.log(data)
+    
+    return {itemId,count} 
     // The value we return becomes the `fulfilled` action payload
     // return response.data;
   }
@@ -47,7 +45,7 @@ export const updateAsync = createAsyncThunk(
 export const deleteAsync = createAsyncThunk(
   'cart/deleteItems',
   async (item )  => {
-    console.log(item)
+    // console.log(item)
     const response = await deleteItem(item);
     const data = await response.json();
     return data.cart.items
@@ -68,18 +66,43 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAsync.fulfilled , (state , action) =>{
-        console.log(action.payload)
+        // console.log(action.payload)
         state.items = action.payload;
+        
       })
       .addCase(addAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items= (action.payload);
+        // console.log(action)
+        state.items.push(action.payload)
+      })
+      .addCase(addAsync.pending, (state, action) => {
+        state.status = 'loading';
+        // console.log(action)
+       state.items=state.items
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items= (action.payload);
+        state.items=state.items
+        console.log(action.payload.itemId)
+        const updatedItem = state.items.find((item)=>item.product._id.toString() === action.payload.itemId)
         // state.items.push(action.payload);
+        updatedItem.quantity=action.payload.count
+  
+        // const updatedItem = state.items.find((item)=>item.product._id.toString() === action.payload.itemId)
+        // // state.items.push(action.payload);
+        // updatedItem.quantity=action.payload.count
       })
+      .addCase(updateAsync.pending , (state,action)=>{
+        state.status = 'loading';
+        state.items=state.items
+        // console.log(action.payload)
+        // state.status = 'idle';
+        // console.log(action.payload)
+        // const updatedItem = state.items.find((item)=>item.product._id.toString() === action.payload.itemId)
+        // // state.items.push(action.payload);
+        // updatedItem.quantity=action.payload.count
+      })
+
       .addCase(deleteAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items= (action.payload);
@@ -89,8 +112,6 @@ export const cartSlice = createSlice({
 });
 
 // export const {  } = productsSlice.actions;
-
-
 
 
 export default cartSlice.reducer;

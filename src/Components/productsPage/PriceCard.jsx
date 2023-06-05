@@ -5,6 +5,7 @@ import { useState } from "react"
 import {addAsync , updateAsync} from "./../../redux/features/cartSlice"
 import { useDispatch } from "react-redux"
 function PriceCard({price ,discountPercentage,id}) {
+  console.log(id)
   const [noOfItems , setNoOfItems] = useState(1)
   const handlePlus = () =>{
     setNoOfItems(noOfItems + 1)
@@ -31,7 +32,7 @@ function PriceCard({price ,discountPercentage,id}) {
        
         <p className="quantity">Quantity</p>
     </div>
-    <button  onClick={() => dispatch(updateAsync({itemId:id , count : noOfItems }))}>Add to Cart </button>
+    <button  onClick={() => dispatch(addAsync(id))}>Add to Cart </button>
    </div>
 
   )

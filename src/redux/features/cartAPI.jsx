@@ -1,5 +1,4 @@
-// A mock function to mimic making an async request for data
-import axios from "axios";
+
 
 export function fetchItems() {
 
@@ -22,13 +21,12 @@ export function addItem(itemID) {
         },
       })
 }
-export function updateItem( itemID , count ){
-  console.log(typeof(count))
-  
-  return fetch(`http://localhost:1200/api/v1/carts/${itemID}`, {
+export function updateItem( {itemId , count} ){
+  console.log(itemId,count)
+  return fetch(`http://localhost:1200/api/v1/carts/${itemId}`, {
     method: 'PATCH',
     body: JSON.stringify({
-     count: count
+     count
   }),
     headers: {
       'Content-Type': 'application/json',

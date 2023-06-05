@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { Routes , Route} from 'react-router-dom';
 import React ,{useContext, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { fetchAsync } from './redux/features/cartSlice';
 import Checker from './Components/Navbar/Checker';
 import Homepage from './Components/HomePage/Homepage';
@@ -15,10 +15,12 @@ import Footer from './Components/Footer/Footer';
 import Cart from './redux/features/Cart';
 function App() {
   const dispatch = useDispatch();
+  const items = useSelector((state)=>state.cart.items)
   useEffect(()=>{
     dispatch(fetchAsync())
   },[])
 
+    // console.log(items);
   return (
     <>
      <Navbar></Navbar>
