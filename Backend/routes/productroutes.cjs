@@ -1,7 +1,15 @@
 const express = require('express');
 const productController = require('../controllers/productcontroller.cjs');
 const authController = require('../controllers/authController.cjs')
+const reviewController = require('./../controllers/reviewController.cjs')
 const router = express.Router();
+
+
+
+
+router
+.route('/reviews')
+.get(reviewController.getAllReview)
 
 router
 .route('/tag/:tagId')
@@ -9,7 +17,7 @@ router
 
 router
 .route('/')
-.get(productController.getproducts)
+.get(productController.getAllproducts)
 .post(productController.postproduct)
 
 
@@ -33,5 +41,11 @@ router
 router
 .route('/tag/')
 .get(productController.getByTags)
+
+
+router
+.route("/:productId/reviews")
+.get(authController.protect , reviewController.getReviewsByTourId)
+.post(authController.protect , reviewController.createReview )
 
 module.exports = router

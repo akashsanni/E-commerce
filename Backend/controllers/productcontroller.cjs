@@ -24,7 +24,7 @@ exports.postproduct = async (req, res) => {
     }
   };
 
-  exports.getproducts = async( req, res ) => {
+  exports.getAllproducts = async( req, res ) => {
     try{
       const product = await Product.find();
       res.status(200).json({
@@ -45,7 +45,7 @@ exports.postproduct = async (req, res) => {
 
   exports.getproduct = async( req, res ) => {
     try{
-      const product = await Product.findById(req.params.id);
+      const product = await Product.find({_id:req.params.id}).populate('reviews')
       res.status(200).json({
         status: 'success',
         data: {
@@ -68,7 +68,8 @@ exports.postproduct = async (req, res) => {
       const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
-      });
+      })
+      // const product = await Product.find({_id:req.params.id}).populate('reviews')
   
       res.status(200).json({
         status: 'success',

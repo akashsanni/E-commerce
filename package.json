@@ -34,6 +34,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.11.1",
     "semantic-ui-react": "^2.1.4",
+    "stripe": "^12.8.0",
     "validator": "^13.9.0"
   },
   "devDependencies": {

@@ -5,6 +5,7 @@ const userRouter = require('./routes/userRoutes.cjs');
 const productRouter = require('./routes/productroutes.cjs')
 const cartRouter = require('./routes/cartRoutes.cjs')
 const AppError = require('./utils/appError.cjs')
+const bookingRoutes = require("./routes/bookingRoutes.cjs")
 const globalErrorHandler = require('./controllers/errorController.cjs')
 const app = express();
 app.use(cors());
@@ -14,6 +15,8 @@ app.use(morgan('dev'));
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/carts', cartRouter);
+
+// app.use('./api/v1/bookings' , bookingRoutes )
 app.all('*',( req, res, next) => {
  
     next(new AppError(`cant find the ${req.originalUrl} on this server`,404));

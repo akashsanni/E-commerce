@@ -12,12 +12,6 @@ const productSchema = new mongoose.Schema({
         required: [true, 'product Must Have A Descriprtion'],
         unique:true,
     },
-    rating:{
-        type:Number,
-    },
-    reviews: {
-        type: Number,
-    },
     price:{
         type:Number,
         required: [true, 'A product Must Have A price']
@@ -38,6 +32,16 @@ const productSchema = new mongoose.Schema({
     
 
     });
+
+    productSchema.set('toObject',{virtuals:true})
+    productSchema.set('toJSON',{virtuals:true})
+
+    productSchema.virtual('reviews', {
+        ref: 'Review', // This should be the name of the related schema for reviews
+        localField: '_id', // The field in the current schema that is used as a reference
+        foreignField: 'product' // The field in the related schema that references the current schema
+      });
+
 
 const Product = mongoose.model('Product', productSchema);
 
