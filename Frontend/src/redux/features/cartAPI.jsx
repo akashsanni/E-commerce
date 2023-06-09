@@ -2,7 +2,7 @@
 
 export function fetchItems() {
 
-    return fetch('http://localhost:1200/api/v1/carts/', {
+    return fetch('/api/v1/carts/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ export function fetchItems() {
 }
 
 export function addItem(itemID) {
-    return fetch(`http://localhost:1200/api/v1/carts/${itemID}`, {
+    return fetch(`/api/v1/carts/${itemID}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export function addItem(itemID) {
 }
 export function updateItem( {itemId , count} ){
   console.log(itemId,count)
-  return fetch(`http://localhost:1200/api/v1/carts/${itemId}`, {
+  return fetch(`/api/v1/carts/${itemId}`, {
     method: 'PATCH',
     body: JSON.stringify({
      count
@@ -36,7 +36,7 @@ export function updateItem( {itemId , count} ){
 }
 
 export function deleteItem(id){
-   return fetch(`http://localhost:1200/api/v1/carts/${id}`, {
+   return fetch(`/api/v1/carts/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

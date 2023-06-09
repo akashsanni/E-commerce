@@ -8,7 +8,7 @@ const ProductsPage = () => {
   const [obj , setObj] = useState({})
   let {id} = useParams()
   useEffect(()=>{
-    fetch(`http://localhost:1200/api/v1/products/${id}`)
+    fetch(`/api/v1/products/${id}`)
     .then((res)=>res.json())
     .then((data)=>setObj(data.data.product[0]))
 },[id])

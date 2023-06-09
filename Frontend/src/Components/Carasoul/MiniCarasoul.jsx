@@ -42,7 +42,7 @@ function MiniCarasoul({tag}) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(()=>{
-    fetch(`http://localhost:1200/api/v1/products/tag/${tag}`)
+    fetch(`/api/v1/products/tag/${tag}`)
     .then(res=>res.json())
     .then(data=>setDeals([...deals,data]))
     .then(setIsLoaded(true))

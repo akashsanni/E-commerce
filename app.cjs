@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const path = require('path')
 const cors = require('cors');
 const userRouter = require('./routes/userRoutes.cjs');
 const productRouter = require('./routes/productroutes.cjs')
@@ -16,6 +17,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/carts', cartRouter);
 
+app.use(express.static(path.join(__dirname , "./Frontend/dist")))
 // app.use('./api/v1/bookings' , bookingRoutes )
 app.all('*',( req, res, next) => {
  

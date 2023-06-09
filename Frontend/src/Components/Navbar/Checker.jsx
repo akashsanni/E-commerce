@@ -14,7 +14,7 @@ function Checker() {
         return;
       }
 
-      fetch(`http://localhost:1200/api/v1/products/categories/${id}`)
+      fetch(`/api/v1/products/categories/${id}`)
       .then((res)=>res.json())
       .then(data=>{
           setDataTemp(data.data.categories)
