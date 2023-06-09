@@ -6,7 +6,9 @@ function Categories(props) {
     const [categories, setCategories] = useState([]);
   
     useEffect(() => {
-      fetch("http://localhost:1200/api/v1/products/categories")
+
+      fetch("/api/v1/products/categories")
+
         .then(res => res.json())
         .then(data => {
 

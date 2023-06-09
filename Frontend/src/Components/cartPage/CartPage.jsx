@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
+
+import { useSelector , useDispatch } from 'react-redux';
+import {fetchAsync} from "./../../redux/features/cartSlice"
 import CartProductCard from './CartProductCard';
 import CartTotal from './CartTotal';
 
+
+
 function CartPage() {
-  const [carts, setCarts] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:1200/api/v1/users/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzFlNjc2NzUwNmRhZmE1MmNmYjJlOSIsImlhdCI6MTY4NTI2NDY5MiwiZXhwIjoxNjg1MzUxMDkyfQ.gqBkp0FlAtC-9K1xgbF6CQFpT5Vp4oQsfB-oRQYg4-E'
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setCarts(data.data.user.carts))
-      .catch((error) => console.error('Error fetching cart data:', error));
-  }, []);
-
-  const cartProductCards = carts.map((cart) => (
-    <CartProductCard key={cart._id} name={cart.product.name} price={cart.product.price} pic= {cart.product.images[0]} count = {cart.count}/>
-  ));
-   let subtotal = 0;
-  carts.forEach((cart)=>{
-    return subtotal+=(cart.product.price*cart.count)
-  })
-  console.log(subtotal);
+  const carts = useSelector((state) => state.cart.items);
   console.log(carts)
+  const status = useSelector((state) => state.cart.status);
+  const [cart , setCart] = useState([]);
+  const cartLength = carts.length;
+
+  if ( status === "loading" || !carts  || carts.length === 0) {
+    // Render a loading state or an error message
+     return <div>Loading...</div>;
+  }
+ 
+  if ( status === "idle" || !carts  || carts.length === 0) {
+    // Render a loading state or an error message
+    
+  }
+
+
+  let subtotal = 0;
+  carts.forEach((cart) => {
+    if (cart?.product?.price && cart?.quantity) {
+      subtotal += cart?.product?.price * cart?.quantity;
+    }
+  });
+
+
 
   return (
     <div className="cartPage">
@@ -36,10 +42,25 @@ function CartPage() {
         <h1>Quantity</h1>
         <h1>Subtotal</h1>
       </div>
-      {cartProductCards}
+
+      { carts?.map((cart, index) => (
+    <CartProductCard
+      key={index}
+      name={cart?.product?.name}
+      price={cart?.product?.price}
+      pic={cart?.product?.images[0] ?? ''}
+      count={cart?.quantity}
+      itemId={cart?.product?._id}
+    />
+   
+  ))
+  
+  }
+
 
       <div className="cartpagebtm">
-        <CartTotal subtotal={subtotal} />
+        <CartTotal subtotal={subtotal } />
+
       </div>
     </div>
   );

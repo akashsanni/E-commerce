@@ -4,8 +4,13 @@ import { FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 
+import { useSelector } from 'react-redux';
+
+
 import "./Navbar.css"
 function Navbar() {
+  const cartCount = useSelector((state) => state.cart.items.length)
+
   return (
     <>
         <div className='Navbar__wrapper'>
@@ -25,7 +30,12 @@ function Navbar() {
                 <div><FaUserAlt/></div> 
                 </Link>
                 <Link to ='/cart'>
-                  <img src="https://cdn-icons-png.flaticon.com/128/2211/2211008.png" width ={30} alt="" />
+
+                  <div className="navbar__cart">
+                  <i className="fa badge fa-lg" value={cartCount}>&#xf07a;</i>
+                  </div>
+                  
+
                 </Link>
                
             </div>

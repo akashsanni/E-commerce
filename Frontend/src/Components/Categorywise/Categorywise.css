@@ -20,7 +20,9 @@
     max-width: 400px;
     display: flex;
     justify-content: space-between;
-    height: 200px;
+
+    height: 250px;
+
     flex-grow: 1;
    background-color: #fafafa;
     border-radius: 10px;
@@ -51,4 +53,15 @@
     margin:15px;
     border-radius: 7px;
     
+
+}
+
+.writearevuew{
+    padding: 1em;
+    border: white;
+    border-radius: 7px;
+    width: 180px;
+    color: white;
+    background-color: red;
+
 }

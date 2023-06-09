@@ -110,6 +110,78 @@
 }
 
 
+/* Review Page  */
+.review{
+    display: flex;
+    flex-direction: column;
+}
+.review > h2{
+    margin-top: 3em;
+    font-size: 3rem;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.review__main{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.star{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-around;
+    width: 150%;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+}
+.star>p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    padding: 3px;
+}
+
+
+.commentsByUSer__main{
+    margin-top: 20px;
+    background-color: azure;
+    box-shadow: -0.4px -0.3px grey;
+    padding: 20px;
+}
+
+.commentsByUSer{
+
+    display: flex;
+    align-items: center;
+   
+} 
+.details{
+    display: flex;
+    flex-direction: column;
+}
+.details>*{
+    padding: 10px;
+}
+.user__and__ratings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.review__details , .user__details{
+    padding: 5px;
+    display: flex;
+    width: max-content;
+    justify-content: space-between;
+
+}
+
+
+
+
 @media(max-width:1400px){
     .productsPage{
         flex-direction: column;

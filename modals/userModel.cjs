@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
+const { type } = require('os')
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -44,21 +45,11 @@ const userSchema = new mongoose.Schema({
         }
     },
     carts:[
-        {
-            product:{
-                type:mongoose.Schema.ObjectId, 
-                ref:"Product",
-                unique:true, 
-            },
-            count:{
-                type:Number,
-                default:1
-            }
-
-        }
-       
-        
-    ],  
+       {
+        type:mongoose.Schema.ObjectId,
+        ref:"Cart"
+       }
+    ],
      
     paswordChanged : Date,
     passwordResetToken:String,
