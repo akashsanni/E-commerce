@@ -57,6 +57,7 @@
 }
 .usp > img{
     width: 120px;
+
 }
 
 .dealname{
@@ -70,4 +71,5 @@
 .dealname >p{
     color: burlywood;
     font-size: 1.5rem;
+
 }

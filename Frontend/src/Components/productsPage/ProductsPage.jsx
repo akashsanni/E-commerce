@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import { useParams } from 'react-router-dom'
 
 import PriceCard from './PriceCard'
@@ -21,6 +22,7 @@ console.log(obj)
     <div className="productsPageright">
         <h1><b>{obj?.name}</b> | {obj?.description}</h1>
         <div>⭐{obj?.rating} | {obj?.reviews} reviews</div>
+
         <br /><br /><br />
         <hr />
 
@@ -35,9 +37,11 @@ console.log(obj)
         </div>
         <div className="ProductsPagecards">
         <DeliveryCard />
+
         <PriceCard price={obj?.price} id={id} discountPercentage={obj?.discountPercent}/>
         </div>
         <Review />
+
 
     </div>
 

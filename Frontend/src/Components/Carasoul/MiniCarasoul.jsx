@@ -1,9 +1,11 @@
 import Carousel from "react-multi-carousel";
 import "./carasoul.css"
 import { Image } from "semantic-ui-react";
+
 import { useEffect ,useState } from "react";
 import 'react-multi-carousel/lib/styles.css';
 import Homepagecard from "../cards/Homepagecard";
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -37,6 +39,7 @@ const images = [
   "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
 ];
 
+
 function MiniCarasoul({tag}) {
   const [deals , setDeals] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -66,6 +69,8 @@ const dailyDealsMap = deals[0]?.data?.product.map((deal)=>{
 
 
 
+
+
   return (
     <Carousel className="min__carasoul"
       ssr={true}
@@ -74,6 +79,7 @@ const dailyDealsMap = deals[0]?.data?.product.map((deal)=>{
       itemClass="image-item"
       responsive={responsive}
     >
+
        { isLoaded &&  dailyDealsMap} 
        {/* <Homepagecard 
        key={"1"}
@@ -94,6 +100,7 @@ const dailyDealsMap = deals[0]?.data?.product.map((deal)=>{
       <Homepagecard></Homepagecard>
       <Homepagecard></Homepagecard>
       <Homepagecard></Homepagecard> */}
+
 
     </Carousel>
   )

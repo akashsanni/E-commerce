@@ -14,7 +14,9 @@ function Checker() {
         return;
       }
 
+
       fetch(`/api/v1/products/categories/${id}`)
+
       .then((res)=>res.json())
       .then(data=>{
           setDataTemp(data.data.categories)

@@ -20,7 +20,9 @@ function Categorywise({image , name , price , discountPrice ,rating ,_id }) {
             <div className="rating">
                 <p>⭐{rating}</p>
             </div>
+
             <button className="addtocart">View Product  </button>
+
         </div>
     </div>
     

@@ -3,12 +3,14 @@ import { FaSearch } from 'react-icons/fa';
 import { FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+
 import { useSelector } from 'react-redux';
 
 
 import "./Navbar.css"
 function Navbar() {
   const cartCount = useSelector((state) => state.cart.items.length)
+
   return (
     <>
         <div className='Navbar__wrapper'>
@@ -28,10 +30,12 @@ function Navbar() {
                 <div><FaUserAlt/></div> 
                 </Link>
                 <Link to ='/cart'>
+
                   <div className="navbar__cart">
                   <i className="fa badge fa-lg" value={cartCount}>&#xf07a;</i>
                   </div>
                   
+
                 </Link>
                
             </div>

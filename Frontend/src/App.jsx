@@ -1,4 +1,5 @@
 import './App.css'
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { Routes , Route} from 'react-router-dom';
@@ -29,17 +30,19 @@ function App() {
     // console.log(items);
   return (
     <>
-    
+   
      <Navbar></Navbar>
     <Routes>
       <Route path='/' element={<Homepage/>}></Route>
       <Route path={`/category/:id`}  element={<Checker></Checker>}></Route>
+
       <Route path={'/authentication'} element ={  <Me/>}/>
 
       <Route path={'/description/:id'} element ={< ProductsPage/>}/>
       <Route path={'/cart'} element ={< CartPage/>}/>
       <Route path={'/testing'} element ={< Cart/>}/>
     </Routes> 
+
 
     
     

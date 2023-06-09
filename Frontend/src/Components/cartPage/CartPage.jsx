@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { useSelector , useDispatch } from 'react-redux';
 import {fetchAsync} from "./../../redux/features/cartSlice"
 import CartProductCard from './CartProductCard';
@@ -32,6 +33,7 @@ function CartPage() {
   });
 
 
+
   return (
     <div className="cartPage">
       <div className="cartPage__main">
@@ -40,6 +42,7 @@ function CartPage() {
         <h1>Quantity</h1>
         <h1>Subtotal</h1>
       </div>
+
       { carts?.map((cart, index) => (
     <CartProductCard
       key={index}
@@ -57,6 +60,7 @@ function CartPage() {
 
       <div className="cartpagebtm">
         <CartTotal subtotal={subtotal } />
+
       </div>
     </div>
   );

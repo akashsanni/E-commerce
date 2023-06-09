@@ -34,6 +34,7 @@
   /* font-family: 'Source Sans Pro', sans-serif; */ 
 }
 
+
 .badge:after{
   content:attr(value);
   font-size:12px;
@@ -46,3 +47,4 @@
   top:-10px;
   opacity:0.9;
 }
+
