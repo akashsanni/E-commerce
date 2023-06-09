@@ -10,16 +10,17 @@ const ProductsPage = () => {
   useEffect(()=>{
     fetch(`http://localhost:1200/api/v1/products/${id}`)
     .then((res)=>res.json())
-    .then((data)=>setObj(data.data))
-},[])
+    .then((data)=>setObj(data.data.product[0]))
+},[id])
+console.log(obj)
   return (
     <div className="productsPage">
      <div className="productsPageleft">
-        <img src={obj?.product?.images[0]} width ={500}alt="" />
+        <img src={  obj.images &&  obj?.images[0]} width ={500}alt="" />
     </div>
     <div className="productsPageright">
-        <h1><b>{obj?.product?.name}</b> | {obj?.product?.description}</h1>
-        <div>⭐{obj?.product?.rating} | {obj?.product?.reviews} reviews</div>
+        <h1><b>{obj?.name}</b> | {obj?.description}</h1>
+        <div>⭐{obj?.rating} | {obj?.reviews} reviews</div>
         <br /><br /><br />
         <hr />
 
@@ -34,7 +35,7 @@ const ProductsPage = () => {
         </div>
         <div className="ProductsPagecards">
         <DeliveryCard />
-        <PriceCard price={obj?.product?.price} id={id} discountPercentage={obj?.product?.discountPercent}/>
+        <PriceCard price={obj?.price} id={id} discountPercentage={obj?.discountPercent}/>
         </div>
         <Review />
 

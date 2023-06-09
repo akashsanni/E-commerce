@@ -18,14 +18,23 @@ export const fetchAsync = createAsyncThunk(
   }
 );
 
+//items is an array of objects 
+// 0 : {
+//   quantity:
+//   product:{
+        // name:"boAt Airdopes 161"
+        // price:2490
+        // discountPercent:56
+//   }
+// }
+
 export const addAsync = createAsyncThunk(
   'cart/addItems',
   async (item) => {
     const response = await addItem(item);
     const data = await response.json();
     return data.data;
-    // The value we return becomes the `fulfilled` action payload
-    // return response.data;
+   
   }
 );
 
@@ -34,9 +43,7 @@ export const updateAsync = createAsyncThunk(
   async ({itemId , count} )  => {
     const response = await updateItem({itemId , count});
     const data = await response.json();
-    console.log(data)
-    
-    return {itemId,count} 
+    return data.data
     // The value we return becomes the `fulfilled` action payload
     // return response.data;
   }
@@ -45,13 +52,10 @@ export const updateAsync = createAsyncThunk(
 export const deleteAsync = createAsyncThunk(
   'cart/deleteItems',
   async (item )  => {
-    // console.log(item)
     const response = await deleteItem(item);
     const data = await response.json();
     return data.cart.items
    
-    // The value we return becomes the `fulfilled` action payload
-    // return response.data;
   }
 );
 
@@ -70,23 +74,35 @@ export const cartSlice = createSlice({
         state.items = action.payload;
         
       })
+      //items is an array of objects 
+// 0 : {
+//   quantity:
+//   product:{
+        // name:"boAt Airdopes 161"
+        // price:2490
+        // discountPercent:56
+//   }
+// }
       .addCase(addAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         // console.log(action)
-        state.items.push(action.payload)
-      })
-      .addCase(addAsync.pending, (state, action) => {
-        state.status = 'loading';
-        // console.log(action)
-       state.items=state.items
+        console.log(action.payload)
+        state.items.push(
+          {quantity:action.payload.quantity , 
+          product:action.payload.product[0]}
+          
+          )
       })
       .addCase(updateAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items=state.items
-        console.log(action.payload.itemId)
-        const updatedItem = state.items.find((item)=>item.product._id.toString() === action.payload.itemId)
+        // const index = 
+        const index = state.items.findIndex((item)=>item.product._id.toString() ===action.payload.product[0]._id.toString())
+        // state.items=state.items
+        console.log(action.payload)
+        state.items[index].quantity = action.payload.quantity;
+        // const updatedItem = state.items.find((item)=>item.product._id.toString() === action.payload.product[0]._id.toString())
         // state.items.push(action.payload);
-        updatedItem.quantity=action.payload.count
+        // updatedItem.quantity=action.payload.quantity
   
         // const updatedItem = state.items.find((item)=>item.product._id.toString() === action.payload.itemId)
         // // state.items.push(action.payload);
