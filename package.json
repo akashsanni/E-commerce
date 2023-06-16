@@ -1,8 +1,7 @@
 {
   "name": "vite-project",
-  "private": true,
+  "main":"server.cjs",
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "start": "node server.cjs",
     "dev": "vite",
