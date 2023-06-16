@@ -1,38 +1,22 @@
 {
   "name": "vite-project",
-  "main":"server.cjs",
   "version": "0.0.0",
+  "main":"server.cjs",
+
   "scripts": {
-    "start": "node server.cjs",
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "start": "node server.cjs"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@reduxjs/toolkit": "^1.9.5",
-    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.1.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.3",
-    "nodemon": "^2.0.22",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
-    "react-multi-carousel": "^2.4.1",
-    "react-redux": "^8.0.5",
-    "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.11.1",
-    "semantic-ui-react": "^2.1.4",
     "stripe": "^12.8.0",
     "validator": "^13.9.0"
   },
